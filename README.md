@@ -1,26 +1,55 @@
 Samson Wandah - JNBK Task
 
-For JWT I use this package: tymon/jwt-auth
+
+
+For JWT I used this package: tymon/jwt-auth
 Models:
 - Users
 - Product
 - Category
 - ProductCategory
 
-* User
+## User
+- Datatypes
+    -- 
 - Register: POST  /api/auth/register
     - Fields: name, email, password, password_confirmation
 
 - Login: POST /api/auth/login
-    - Fields: email, Password   
+    - Fields: [email, Password]   
     - you will be issued with a token
 
+- User Profile : GET  /api/auth/user-profile
+    - Fields: []
+    - use issued token to get user profile
 
-	
-GET	/api/auth/user-profile
-POST	/api/auth/refresh
-POST	/api/auth/logout
+- Refresh Token: POST	/api/auth/refresh
+    - Fields: []
+- Logout: POST	/api/auth/logout
+    - Fields: []
 
+## Category
+    Datatypes:
+    - Title: string
+    - is_active: Boolean
+
+- All Categories:  GET /api/category
+- View Category: GET /api/category/view/{id}
+- Save New Category: POST /api/category/store
+    - Fields: [title, is_active]
+        Route::patch('update/{id}', 'CategoryController@update');
+        Route::post('delete/{id}', 'CategoryController@destroy');
+    });
+## Products
+Route::prefix('products')->group(function () {
+        Route::get('/', 'ProductController@index');
+        Route::get('view/{id}', 'ProductController@show');
+        Route::post('store', 'ProductController@store');
+        Route::patch('update/{id}', 'ProductController@update');
+        Route::post('delete/{id}', 'ProductController@destroy');
+        Route::post('add-category/{id}/', 'ProductController@category_add');
+        Route::post('delete-category/{id}', 'ProductController@category_delete');
+    });
 
 
 
