@@ -46,5 +46,5 @@ class UserTest extends TestCase
                     ->post ('/api/auth/refresh', []);
 
         $response->assertStatus(201);
-}
+    }
 }

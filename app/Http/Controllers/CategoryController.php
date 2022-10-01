@@ -41,7 +41,6 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $collection = $request->except(['_token','_method']);
-        $validatedData = $request->validated();
         return  $this->categoryRepo->create($collection);
     }
 

@@ -19,10 +19,9 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->name;
         $users = User::create(['name'=>'tester', 'email'=>'tester@email.com','password'=>bcrypt('password')]);
         return [
-            'title' => $name,
+            'title' => $this->faker->title,
             'price' => $this->faker->numberBetween($min = 500, $max = 8000),
             'is_active' => 1,
             'users_id' => User::all()->random()->id,

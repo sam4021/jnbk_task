@@ -52,6 +52,15 @@ class ProductTest extends TestCase
         $response->assertStatus(200);
     }
 
+    // Test Product Delete
+    public function testProductDelete()
+    {
+        $response = $this->withHeaders(['Authorization'=>'Bearer '.$this->token,
+							    'Accept' => 'application/json'])
+                        ->post('/api/products/delete/'.$this->product->id);
+        $response->assertStatus(200);
+    }
+
     //Test Products Not Empty
     public function testProductsNotEmpty()
     {
